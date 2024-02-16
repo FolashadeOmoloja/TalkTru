@@ -1,9 +1,10 @@
-import React from 'react'
+import { UserButton } from "@clerk/nextjs";
+
 
 const page = () => {
   return (
     <main>
-      <h1>Threads</h1>
+       <UserButton afterSignOutUrl="/"/>
     </main>
   )
 }
