@@ -5,7 +5,7 @@ import "../globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'TalkTru',
+  title: 'TalkTrue',
   description: 'A social media platform that allows youths to express themselve, connect and build productive communities'
 };
 
