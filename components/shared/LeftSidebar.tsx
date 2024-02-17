@@ -33,7 +33,7 @@ const LeftSidebar = () => {
               )}
          </div>
          <div className='mt-10 px-6'>
-              <LogoutButton/>
+              <LogoutButton display={true} attr={()=>router.push('/sign-in')}/>
          </div>
     </section>
   )

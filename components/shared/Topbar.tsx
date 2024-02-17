@@ -12,7 +12,7 @@ const Topbar = () => {
         </Link>
         <div className='flex items-center gap-1'>
             <div className='block md:hidden'>
-                <LogoutButton/>
+                <LogoutButton display={false}/>
             </div>
             <OrganizationSwitcher/>
         </div>
