@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image   from 'next/image'
 import {OrganizationSwitcher } from '@clerk/nextjs'
 import LogoutButton from '../elements/LogoutButton'
+import { dark } from "@clerk/themes";
 
 const Topbar = () => {
   return (
@@ -14,7 +15,14 @@ const Topbar = () => {
             <div className='block md:hidden'>
                 <LogoutButton display={false}/>
             </div>
-            <OrganizationSwitcher/>
+            <OrganizationSwitcher
+           appearance={{
+            baseTheme: dark,
+            elements: {
+              organizationSwitcherTrigger: "py-2 px-4",
+            },
+          }}
+            />
         </div>
     </nav>
   )
