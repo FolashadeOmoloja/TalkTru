@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image   from 'next/image'
-import {OrganizationSwitcher, SignOutButton, SignedIn } from '@clerk/nextjs'
+import {OrganizationSwitcher } from '@clerk/nextjs'
+import LogoutButton from '../elements/LogoutButton'
 
 const Topbar = () => {
   return (
@@ -11,11 +12,7 @@ const Topbar = () => {
         </Link>
         <div className='flex items-center gap-1'>
             <div className='block md:hidden'>
-                 <SignedIn>
-                     <SignOutButton>
-                           <Image src={'/assets/logout.svg'} alt={'logout'} width={28} height={28}/>
-                     </SignOutButton>
-                 </SignedIn>
+                <LogoutButton/>
             </div>
             <OrganizationSwitcher/>
         </div>

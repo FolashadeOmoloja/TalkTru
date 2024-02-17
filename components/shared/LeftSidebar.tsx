@@ -3,6 +3,7 @@ import { sidebarLinks } from '@/constants'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
+import LogoutButton from '../elements/LogoutButton'
 
 const LeftSidebar = () => {
   const router = useRouter()
@@ -13,7 +14,7 @@ const LeftSidebar = () => {
             {
               sidebarLinks.map((link)=>{
 
-                const isActive = (pathname.includes(link.route) || pathname === link.route)
+                const isActive = (pathname.includes(link.route) && link.route.length > 1 || pathname === link.route)
                 return (
                   <Link 
                      href={link.route} 
@@ -30,6 +31,9 @@ const LeftSidebar = () => {
                   </Link>
               )}
               )}
+         </div>
+         <div className='mt-10 px-6'>
+              <LogoutButton/>
          </div>
     </section>
   )
