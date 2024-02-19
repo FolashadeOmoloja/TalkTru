@@ -10,6 +10,7 @@ import { Form , FormControl,
 import { UserValidation } from "@/lib/validations/user";
 import { Button } from "../elements/button"
 import { Input } from "../elements/input";
+import { z } from "zod";
 
 // import { Input } from "@/components/ui/input"
 
@@ -27,8 +28,9 @@ btnTitle: string
 
 
 
+
 const AccountProfile = ({user, btnTitle}: Iprops) => {
-    const form = useForm(
+    const form = useForm< z.infer<typeof UserValidation>>(
       {
         resolver: zodResolver(UserValidation),
         defaultValues: {
@@ -40,10 +42,34 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
       }
     )
 
-  return (
-      <Form>
+    function onSubmit(values: z.infer<typeof UserValidation>) {
+        // Do something with the form values.
+        // ✅ This will be type-safe and validated.
+        console.log(values)
+      }
 
-      </Form>
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
   )
 }
 
