@@ -1,6 +1,8 @@
 'use client'
 
+
 const AccountProfile = () => {
+
   return (
     <div>AccountProfile</div>
   )
