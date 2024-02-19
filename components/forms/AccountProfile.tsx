@@ -13,6 +13,7 @@ import { Input } from "../elements/input";
 import { z } from "zod";
 import Image from "next/image";
 import { ChangeEvent } from "react";
+import { Textarea } from "../elements/textarea";
 
 // import { Input } from "@/components/ui/input"
 
@@ -106,6 +107,26 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
               <FormControl>
                 <Input
                   type='text'
+                  className='account-form_input no-focus'
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='bio'
+          render={({ field }) => (
+            <FormItem className='flex w-full flex-col gap-3'>
+              <FormLabel className='text-base-semibold text-light-2'>
+                Bio
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  rows={10}
                   className='account-form_input no-focus'
                   {...field}
                 />
