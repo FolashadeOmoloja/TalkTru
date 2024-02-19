@@ -11,6 +11,8 @@ import { UserValidation } from "@/lib/validations/user";
 import { Button } from "../elements/button"
 import { Input } from "../elements/input";
 import { z } from "zod";
+import Image from "next/image";
+import { ChangeEvent } from "react";
 
 // import { Input } from "@/components/ui/input"
 
@@ -42,6 +44,10 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
       }
     )
 
+    const handleImage = (e: ChangeEvent, fieldChange: (value:string) => void) =>{
+        e.preventDefault()
+    }
+
     function onSubmit(values: z.infer<typeof UserValidation>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
@@ -50,23 +56,65 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col justify-start gap-10'>
         <FormField
           control={form.control}
-          name="username"
+          name='profile_photo'
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
+            <FormItem  className='flex items-center gap-4'>
+              <FormLabel className='account-form_image-label'>
+              {field.value ? (
+                  <Image
+                    src={field.value}
+                    alt='profile_icon'
+                    width={96}
+                    height={96}
+                    priority
+                    className='rounded-full object-contain'
+                  />
+                ) : (
+                  <Image
+                    src='/assets/profile.svg'
+                    alt='profile_icon'
+                    width={24}
+                    height={24}
+                    className='object-contain'
+                  />
+                )}
+              </FormLabel>
+              <FormControl className='flex-1 text-base-semibold text-gray-200'>
+                <Input
+                  type='file'
+                  accept='image/*'
+                  placeholder='Add profile photo'
+                  className='account-form_image-input'
+                  onChange={(e) => handleImage(e, field.onChange)}
+                />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+            </FormItem>
+          )}
+        />
+
+       <FormField
+          control={form.control}
+          name='username'
+          render={({ field }) => (
+            <FormItem className='flex w-full flex-col gap-3'>
+              <FormLabel className='text-base-semibold text-light-2'>
+                Username
+              </FormLabel>
+              <FormControl>
+                <Input
+                  type='text'
+                  className='account-form_input no-focus'
+                  {...field}
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>
