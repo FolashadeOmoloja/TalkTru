@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-      serverActions: true,
-      serverComponentsExternalPackages: ["mongoose"], // this makes mongoose actions work
-    },
-    images: { //fixes error from Unhandled Runtime Error with images
+    images: {
       remotePatterns: [
         {
           protocol: "https",
@@ -23,10 +19,9 @@ const nextConfig = {
           hostname: "placehold.co",
         },
       ],
-      typescript: {
-        ignoreBuildErrors: true,
-      },
     },
   };
   
-  module.exports = nextConfig;
+
+
+export default nextConfig;
