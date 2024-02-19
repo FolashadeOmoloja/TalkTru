@@ -37,10 +37,10 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
       {
         resolver: zodResolver(UserValidation),
         defaultValues: {
-            profile_photo:'',
-            name: '',
-            username: '',
-            bio: ''
+            profile_photo: user?.image || '',
+            name: user?.name || '',
+            username: user?.username || '',
+            bio: user?.bio || ''
         }
       }
     )
@@ -96,6 +96,26 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
           )}
         />
 
+         <FormField
+                   control={form.control}
+                   name='name'
+                   render={({ field }) => (
+                     <FormItem className='flex w-full flex-col gap-3'>
+                       <FormLabel className='text-base-semibold text-light-2'>
+                         Name
+                       </FormLabel>
+                       <FormControl>
+                         <Input
+                           type='text'
+                           className='account-form_input no-focus'
+                           {...field}
+                         />
+                       </FormControl>
+                       <FormMessage />
+                     </FormItem>
+                   )}
+                 />
+
        <FormField
           control={form.control}
           name='username'
@@ -136,7 +156,9 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type='submit' className='bg-primary-500'>
+          Submit
+        </Button>
       </form>
     </Form>
   )
