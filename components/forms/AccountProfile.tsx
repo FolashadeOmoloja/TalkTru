@@ -1,10 +1,25 @@
 'use client'
 
+interface Iprops {
+user: {
+    id: string,
+    objectId: string,
+    username: string,
+    name:string,
+    bio: string,
+    image:string
+};
+btnTitle: string
+}
 
-const AccountProfile = () => {
+
+
+const AccountProfile = ({user, btnTitle}: Iprops) => {
 
   return (
-    <div>AccountProfile</div>
+    <main>
+        
+    </main> 
   )
 }
 
