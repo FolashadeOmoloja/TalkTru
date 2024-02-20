@@ -12,10 +12,9 @@ import { Button } from "../elements/button"
 import { Input } from "../elements/input";
 import { z } from "zod";
 import Image from "next/image";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { Textarea } from "../elements/textarea";
 
-// import { Input } from "@/components/ui/input"
 
 interface Iprops {
 user: {
@@ -33,6 +32,8 @@ btnTitle: string
 
 
 const AccountProfile = ({user, btnTitle}: Iprops) => {
+
+    const [files, setFiles] = useState<File[]>([])
     const form = useForm< z.infer<typeof UserValidation>>(
       {
         resolver: zodResolver(UserValidation),
@@ -47,6 +48,7 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
 
     const handleImage = (e: ChangeEvent, fieldChange: (value:string) => void) =>{
         e.preventDefault()
+        const fileReader  = new FileReader()
     }
 
     function onSubmit(values: z.infer<typeof UserValidation>) {
