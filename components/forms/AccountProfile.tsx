@@ -84,7 +84,7 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
                     width={96}
                     height={96}
                     priority
-                    className='rounded-full object-contain'
+                    className='rounded-full object-cover w-[100%] h-[100%]'
                   />
                 ) : (
                   <Image
