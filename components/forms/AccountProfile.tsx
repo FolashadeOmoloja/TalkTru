@@ -36,6 +36,7 @@ btnTitle: string
 const AccountProfile = ({user, btnTitle}: Iprops) => {
 
     const [files, setFiles] = useState<File[]>([])
+    const {startUpload} = useUploadThing('media')
     const form = useForm< z.infer<typeof UserValidation>>(
       {
         resolver: zodResolver(UserValidation),
@@ -64,12 +65,12 @@ const AccountProfile = ({user, btnTitle}: Iprops) => {
         fileReader.readAsDataURL(file);
     }}
 
-    function onSubmit(values: z.infer<typeof UserValidation>) {
+    const onSubmit = async(values: z.infer<typeof UserValidation>) => {
               const blob = values.profile_photo;
               const hasImageChanged = isBase64Image(blob)
 
               if(hasImageChanged){
-
+                     const imgRes = await startUpload(files)
               }
       }
 
